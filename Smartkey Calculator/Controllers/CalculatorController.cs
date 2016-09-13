@@ -9,6 +9,7 @@ namespace Smartkey_Calculator.Controllers
     public class CalculatorController : Controller
     {
         // GET: Calculator
+        [Authorize]
         public ActionResult Index()
         {
             return View();
