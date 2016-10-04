@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Smartkey_Calculator.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,22 @@ namespace Smartkey_Calculator.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        // POST: /Calculator/Index
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult Calc(KeysModel model)
+        {
+            int key;
+            if (Int32.TryParse(model.Key, out key))
+            {
+                model.Licence = CalculatorEngine.Calculate(key).ToString();
+                return View(model);
+            }
+            else
+                return View("Error");
         }
     }
 }

@@ -1,0 +1,21 @@
+﻿@using Smartkey_Calculator.Models
+@model KeysModel
+@{
+    ViewBag.Title = "Wynik";
+}
+
+<h2>Licencja</h2>
+<div class="row">
+    <div class="col-md-3 col-sm-6">
+            Licencja dla klucza <strong>@Html.DisplayFor(model => model.Key)</strong> to:
+        <div>
+            <samp class="result"> @Html.DisplayFor(model => model.Licence)</samp>
+        </div>
+        <div class="btn btn-default">
+            @Html.ActionLink("Powrót", "Index")
+        </div>
+    </div>
+</div>
+
+
+
