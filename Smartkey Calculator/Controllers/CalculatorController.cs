@@ -9,6 +9,8 @@ namespace Smartkey_Calculator.Controllers
 {
     public class CalculatorController : Controller
     {
+        KeysDbContext db = new KeysDbContext();
+
         // GET: Calculator
         [Authorize]
         public ActionResult Index()
@@ -20,16 +22,24 @@ namespace Smartkey_Calculator.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public ActionResult Calc(KeysModel model)
+        public ActionResult Index(KeysModel model)
         {
-            int key;
-            if (Int32.TryParse(model.Key, out key))
+            if (ModelState.IsValid)
             {
+                int key = Int32.Parse(model.Key);
                 model.Licence = CalculatorEngine.Calculate(key).ToString();
-                return View(model);
+                model.CalcDate = DateTime.Now;
+                db.keyModels.Add(model);
+                db.SaveChanges();
+                return View("Calc", model);
             }
-            else
-                return View("Error");
+            else return View();
+        }
+
+        [Authorize]
+        public ActionResult History()
+        {
+            return View(db.keyModels.ToList());
         }
     }
 }

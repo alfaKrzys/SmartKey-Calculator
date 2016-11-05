@@ -19,3 +19,11 @@ textarea {
 .result {
     font-size: xx-large;
 }
+.top-buffer {
+    margin-top: 70px;
+}
+@media only screen and (max-width: 992px) {    
+   .top-buffer {
+    margin-top: 0px;
+}
+}
