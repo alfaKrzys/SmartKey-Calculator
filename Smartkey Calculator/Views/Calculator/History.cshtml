@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<Smartkey_Calculator.Models.KeysModel>
 
 @{
-    ViewBag.Title = "History";
+    ViewBag.Title = "Historia";
 }
 
-<h2>History</h2>
+<h2>Historia</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <table class="table">
     <tr>
         <th>
@@ -20,7 +20,7 @@
         <th>
             @Html.DisplayNameFor(model => model.CalcDate)
         </th>
-        <th></th>
+        @*<th></th>*@
     </tr>
 
 @foreach (var item in Model) {
@@ -34,11 +34,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.CalcDate)
         </td>
-        <td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
+        </td>*@
     </tr>
 }
 
